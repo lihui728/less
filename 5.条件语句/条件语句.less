@@ -1,0 +1,30 @@
+/*
+   条件语句
+     js通过if关键字定义条件语句，less没有if关键字，可以通过when关键字实现
+     在方法的参数集合后面，添加when关键字，来定义方法执行的条件
+        语法 .demo() when () {}
+          拓展
+            且条件 .demo() when () and (){}
+            非条件 .demo() when not (){}
+    js中，我们通过比较运算符，定义条件，less也支持比较运算符  >  <  <= >= =(等于)
+    在比较过程中，可以省略数据的单位
+
+    js中，如果命中多个条件，执行第一个
+    less中，如果命中多个条件，都执行，但是渲染最后一个
+*/
+//宽度大于200渲染红色，
+.module(@w,@h) when (@w > 200){
+   @color:red;
+    width:@w;
+    height:@h;
+    background:@color;
+}
+//宽度大于200，小于500
+.module(@w,@h) when (@w > 200) and (@w < 500){
+    width:@w;
+    height:@h;
+    background:green;
+}
+.wrapper{
+    .module(201px,400px)
+}

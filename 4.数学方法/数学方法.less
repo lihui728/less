@@ -1,0 +1,24 @@
+/*
+   数学方法
+      less中的数学方法跟js的数学方法相比，可以携带单位
+      less也支持取整方法，但是都可以带单位
+        floor 向下取整
+        ceil  向上取整
+        round 四舍五入
+    
+    获取百分数的方法
+       percentage 忽略参数的单位，直接对参数的数值乘以100%
+    最大值，最小值
+       max获取最大值
+       min获取最小值
+         比较的时候，会做数据单位的转换
+*/
+div{
+    width:ceil(5.1in);//6in
+   // height:floor(5.1in);//5in
+   height:round(5.5in);//6in
+    width:percentage(2px);//200%
+    width:percentage(0.6);//60%
+    width:max(100in,200px,300px);//100in
+    background:red;
+}

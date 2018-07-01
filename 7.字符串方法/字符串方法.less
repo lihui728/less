@@ -1,0 +1,27 @@
+/*
+  字符串方法
+     e:表示避免less编译，直接作为css输出//e('str')
+       有时候写的字符串太多了，less编译不了，我们可以写在e方法中，直接作为css输出
+     escape:对字符串做url编码
+   replace : 做字符串替换
+       跟js中字符串很像,三个参数
+       第一个参数表示原始字符串
+       第二个参数表示捕获字符串(正则)
+       第三个参数表示替换的字符串
+*/
+div{
+    width:400px;
+    height:400px;
+    background:linear-gradient(orange,green);//ie8不支持
+    //ie滤镜,ie8需要通过滤镜渐变
+    filter:e('progid:DXImageTransform.Microsoft.gradient(startColorStr=orange,endColorStr=green)');
+    //filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 0, startColorstr = #6699ff, endColorstr = #6699ff);
+  //  filter: ms:alwaysHasItsOwnSyntax.For.Stuff();
+   // filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");
+}
+@str:'今天星期五';
+div::after{
+  // content:'http://www.fsfsf.com &'//直接输出在页面上
+   content:escape('http://www.fasfs.com &');//不显示在页面，并且进行url编码
+   content:replace(@str,'五','天');//替换字符串
+}

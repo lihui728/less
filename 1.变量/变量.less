@@ -1,0 +1,59 @@
+//定义变量
+/*
+  语法：@key:value
+    @类型js中的名称，和js的命名规范一样，建议使用驼峰式命名
+    冒号表示赋值符号，类似js中的=
+    value就是变量的值，可以带单位，例如10px 5em 30%
+    分号表示语句的结束
+  使用变量@key
+  由于变量带单位：变量是可以运算的，也就是说less支持运算（没有变量也支持运算）
+&选择器
+  平时我们为元素设置伪类，通过在选择器外面，对选择器添加：伪类定义的
+  在less中。可以在选择器内部，通过&选择器符号，来获取该选择器，并设置伪类
+*/
+//30 * 3 + 6 * 2 整个的宽度，30内容 有三个 + 有2个边距
+@bg:#3d95d5;//背景颜色
+@color:white;//字体颜色
+@hoverBg:rgba(255,255,255,0.8);//鼠标移入背景色
+@hoverColor:blue;//鼠标移入的字体颜色
+//基本宽度
+
+//less好处，改变配置就可以更换主题了
+@bg:green;
+@color:orange;
+@hoverBg:pink;
+@hoverColor:gold;
+@space:40px;
+@space:20px;
+@itemWidth:@space * 1.5;//每个成员宽度
+@itemMargin:@space * 0.3;//间距
+.nav{
+    width:@itemWidth * 3 + @itemMargin * 2;
+    background:@bg;
+    padding:@space / 5 @space * 0.75;
+    
+    ul{
+        margin-right:-@itemMargin;
+        overflow:hidden;
+    }
+    li{
+        float:left;
+        width:@itemWidth;
+        margin-right:@itemMargin;
+        height:@space;
+        line-height:@space;
+        text-align:center;
+        font-size:@space * 0.6;
+        list-style:none;
+        a{
+            text-decoration: none;
+            color:@color;
+        } 
+        &:hover{
+            background:@hoverBg;
+            a{
+                color:@hoverColor;
+            }
+        }
+    }
+}

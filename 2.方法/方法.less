@@ -1,0 +1,88 @@
+  /*
+    方法
+       方法跟混合一样，都是用来复用样式的
+          混合在编译的时候会保留，方法在编译的时候会删除
+       如果复用的样式中的属性值是可变的，此时我们要定以方法，
+       如果被复用的样式希望在编译的时候被删除，此时我们要定义方法。
+    定义方法
+       跟js中的定义方法很像。
+       语法  .方法名称(){
+           //定义样式 
+       }
+
+    方法名称：跟js定义方法名称规则一样
+    参数集合():用来定义参数变量的
+    方法体{},是用来定义样式的
+
+ 使用方法
+    语法  .方法名称();
+ 定义参数
+    定义参数的语法跟定义变量的一样，只不过多个参数之间用逗号隔开
+    例如 .demo(@a,@b,@c){}
+ 默认参数
+    在less中，定义参数的时候，可以添加默认值
+    但使用方法不传递参数的时候，此时参数变量的值就是默认值
+    语法跟定义变量赋值一样
+    例如 .demo(@width:100px,@height:200px){}
+传递参数
+    如果方法的变量定义了默认值，使用方法的时候，我们可以不用传递参数
+    如果方法的变量没有定义默认值，使用方法的时候，我们必须传递参数
+
+提高权重
+    css中样式提高权重用!important;
+    less做了扩展，可以对方法应用!important,此时方法中的所有样式都将添加!important提高权重
+获取所有参数
+    js中通过arguments获取方法中所有的参数
+    less通过@arguments获取方法中所用的参数
+
+兼容浏览器
+    可以通过方法解决浏览器前缀的问题，在方法中实现对样式的定义，
+    由于兼容浏览器是对某个样式兼容的，
+    此时一个方法尽量设置一个样式
+    方法的名称尽量与样式的名称保持一样，(为了提高语义)
+  */ 
+  *{
+      margin:0;
+      padding:0;
+  }
+  body{
+      background:#efe;
+  }
+  //定义方法
+  .module(@w,@h:400px){//@h默认值
+      width:@w;
+      height:@h;
+      background:#fff;
+      border:1px solid #000;
+  }
+  //定义.borderTop方法,
+    // .border(@w,@s,@c){
+    //     border-top:@w @s @c;
+    // }
+       .border(@w,@s,@c){
+           border-top:@arguments;//不用写多个参数
+       }
+  //定义设置投影的方法
+    .box-shadow(@bs){
+        //兼容浏览器,只写一次
+        -webkit-box-shadow:@bs;
+        -moz-box-shadow:@bs;
+        -ms-box-shadow:@bs;
+        -o-box-shadow:@bs;
+        box-shadow:@bs;
+    }
+  //模块应用样式
+  .module-1{
+      .module(1000px,50px)!important;//提高权重
+      width:500px;//权重，覆盖前面
+      height:500px;
+  }
+  .module-2{
+      .module(300px,400px);
+      .border(10px,solid, black);
+      //设置投影
+      .box-shadow(10px 10px 10px red);
+  }
+  .module-3{
+      .module(800px);//默认值可以不传第二个
+  }

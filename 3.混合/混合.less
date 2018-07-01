@@ -1,0 +1,62 @@
+// 混合
+//    作用：用来复用选择器的样式的
+//    less 支持两种混合
+//       一种类混合，就是类选择器
+//       一种id混合，就是id选择器
+//   使用混合
+//      直接写选择器，此时混合选择器内的样式，被复制进来，这样就实现了对样式的复用
+//  一旦定义了混合，在修改 样式的时候，一定要注意选择器的权重
+//元素样式不能作为混合 
+//注意：混合在编译的时候，保留了，变量在编译的 时候，删除了
+    //  使用混合的时候，是真正的复制样式
+*{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+//定义第一个模块的样式（类混合）
+.link-1{
+   height:30px;
+   line-height:30px;
+   margin:30px 200px;
+   &:hover{
+       
+       background:#efefef;
+   }
+   li{
+       float:left;
+       margin-left:30px;
+       a{
+        text-decoration:none;
+        color:#666;
+        font-size:14px;
+        &:hover{
+            color:#f30
+        }
+    }
+  }
+    
+}
+//id混合 
+#title{
+    color:green;
+}
+//通过混合复用样式
+.link-2{
+    .link-1;
+    //#title;不够权重，不能显示
+    //提高权重
+     li a{
+         #title;
+     }
+    
+}
+.link-3{
+    .link-2;//.link-1样式都有
+    //修改样式，一定要注意权重
+    //    color:red;//权重不够，不生效；
+    //提高权重
+      li a{
+          color:red;
+      }
+}

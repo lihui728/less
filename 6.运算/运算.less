@@ -1,0 +1,23 @@
+/*
+  运算
+     less支持运算 加减乘除等
+        加减法：执行加减法的时候，会进行单位的换算
+          以第一个参数为基准(保留第一个加数或减数的单位)
+        乘法：保留大的单位
+        除法：尽量让除数带单位，除数不要带单位
+         5/2  5是被除数，2是除数
+*/
+.wrapper{
+   //width:1in + 1px;//第一个in(英寸)，输出1.01041667in
+   //width:1px + 1in; //第一个px，输出97px,1in为96px
+   //  width:1px + 1mm;//1mm == 3.77952756px
+   //    width:1px + 1cm;//1cm == 37.79527559px
+   //   width:1in * 10px;
+   // width:10*1in;
+  //  width:1px + 1pt;//pt(一磅) //1pt =  1.33333333px
+  //  width:1pt + 1in; // 1in = 72pt
+  //width:100px / 2;//除以in,mm都是px; //50px
+   width:100 / 2in;//前面不带单位则取除数单位，输出50in
+    height:100px;
+    background:red;
+}
